@@ -5,7 +5,8 @@ from django.contrib import admin
 from .models import Question,Choice
 
 class QuestionAdmin(admin.ModelAdmin):
-    # fields = ['pub_date', 'question_text']
+    list_filter = ['pub_date']  #根据pub_date筛选结果
+    search_fields = ['question_text']   #根据question_text搜索
     list_display = ('question_text','pub_date','was_published_recently')
 admin.site.register(Question,QuestionAdmin)
 

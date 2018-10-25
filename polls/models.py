@@ -15,6 +15,15 @@ class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
 
+    was_published_recently.boolean=True #修改布尔值的样式
+    was_published_recently.short_description = 'published recently?' #简写
+    was_published_recently.admin_order_field = 'pub_date'#排序方式为pub_date
+    '''
+    用于描述数据的元数据Meta
+    '''
+    class Meta:
+        ordering = ['pub_date','question_text']
+
 
 
 class Choice(models.Model):
