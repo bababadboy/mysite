@@ -28,5 +28,6 @@ urlpatterns = [
 
     path('<int:pk>/result/',views.ResultView.as_view(),name = 'result'),
     path('<int:question_id>/vote/',views.vote,name = 'vote'),
+    path('csv/',views.csv_view,name = 'csv')
 
 ]

@@ -13,20 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path,include
-from polls import views
+from django.urls import path,re_path
+from . import views
 
+# 加上 app_name 设置命名空间：
+app_name = 'todo'
 urlpatterns = [
-    
-    path('admin/', admin.site.urls),
-    path('polls/', include('polls.urls')),
-    path('api/', include('todo.urls')),
-    # path('', admin.site.urls),
+    re_path(r'^add_todos/$', views.add_todos,name = 'add_todos'),
+    re_path(r'^show_todos/$',views.show_todos,name = 'show_todos'),
 ]
-
-# 自定义错误页面
-handler400 = views.bad_request
-handler403 = views.permission_denied
-handler404 = views.page_not_found
-handler500 = views.page_error

@@ -46,6 +46,32 @@ def vote(request, question_id):
         #HttpResponseRedirect只有一个参数，是重定向网址
         return HttpResponseRedirect(reverse('polls:result', args=(question.id,)))
 
+def page_not_found(request):
+    return render(request, 'polls/404.html')
+
+
+def page_error(request):
+    return render(request, 'polls/500.html')
+
+
+def permission_denied(request):
+    return render(request, 'polls/403.html')
+
+
+def bad_request(request):
+    return render(request, 'polls/400.html')
+
+# 动态生成csv文件
+import csv
+from django.http import HttpResponse
+def csv_view(request):
+    response = HttpResponse(content_type = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['First row', 'Foo', 'Bar', 'Baz'])
+    writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"])
+    return response
+
 #一、改良视图之前
 # from django.shortcuts import render
 
