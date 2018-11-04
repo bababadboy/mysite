@@ -24,7 +24,7 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('api/', include('todo.urls')),
     
-    re_path(r'^$',TemplateView.as_view(template_name="index.html"))
+    re_path(r'^todo$',TemplateView.as_view(template_name="index.html"))
     # path('', admin.site.urls),
 ]
 
